@@ -1,0 +1,37 @@
+@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.css');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: 'Pretendard Variable', Pretendard, -apple-system, system-ui, sans-serif;
+  --color-ink: #16171a;
+  --color-muted: #6b7280;
+  --color-accent: #2f6df6;
+  --color-surface: #ffffff;
+  --color-line: #e7e8ea;
+}
+
+:root {
+  color-scheme: light dark;
+}
+
+@media (prefers-color-scheme: dark) {
+  @theme {
+    --color-ink: #e9eaec;
+    --color-muted: #9aa0a8;
+    --color-accent: #7aa2ff;
+    --color-surface: #101114;
+    --color-line: #26282d;
+  }
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  background: var(--color-surface);
+  color: var(--color-ink);
+  word-break: keep-all;
+  overflow-wrap: anywhere;
+}
