@@ -6,6 +6,7 @@ interface Item {
   kind?: 'image' | 'loop' | 'video';
   caption?: string;
   poster?: string;
+  thumb?: string;
   width: number;
   height: number;
 }
@@ -32,8 +33,7 @@ const many = items.length > 1;
               alt={m.caption ?? ''}
               width={m.width}
               height={m.height}
-              {/* lazy로 두면 인쇄할 때 안 불러온 장면이 빈칸으로 나온다.
-                  썸네일이 같은 URL을 쓰므로 어차피 받는 바이트다 */}
+              loading={i === 0 ? 'eager' : 'lazy'}
               decoding="async"
             />
           ) : m.kind === 'loop' ? (
@@ -46,7 +46,8 @@ const many = items.length > 1;
               muted
               loop
               playsinline
-              preload="metadata"
+              {/* 첫 장만 미리 받는다. 나머지는 넘길 때 받아도 늦지 않다 */}
+              preload={i === 0 ? 'metadata' : 'none'}
             />
           ) : (
             <video
@@ -86,7 +87,7 @@ const many = items.length > 1;
             aria-current={i === 0 ? 'true' : 'false'}
             aria-label={m.caption ?? `${i + 1}번째 항목`}
           >
-            <img src={m.poster ?? m.src} alt="" loading="lazy" decoding="async" />
+            <img src={m.thumb ?? m.poster ?? m.src} alt="" width="200" loading="lazy" decoding="async" />
             {m.kind !== 'image' && m.kind && <span class="play" aria-hidden="true">▶</span>}
           </button>
         ))}
