@@ -76,7 +76,7 @@ const timeline = [
     <Section
       id="personal"
       title="Personal Projects"
-      lead="학부 시절 OpenGL로 렌더링 기법을 직접 구현한 개인 프로젝트입니다."
+      lead="학부 시절 개인적으로 만든 프로젝트입니다. OpenGL로 렌더링 기법을 직접 구현한 것이 대부분입니다."
     >
       {personal.map((e) => (
         <ProjectCard
@@ -90,7 +90,7 @@ const timeline = [
       ))}
     </Section>
 
-    <Section id="academic" title="Academic Projects" lead="학부 팀 프로젝트입니다.">
+    <Section id="academic" title="Academic Projects" lead="학부 수업과 캡스톤 과정에서 팀으로 진행한 프로젝트입니다.">
       {academic.map((e) => (
         <ProjectCard
           href={`/academic/${e.id}`}

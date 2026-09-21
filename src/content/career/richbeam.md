@@ -49,7 +49,7 @@ media:
 
 *2019.07 ~ 2020.07*
 
-사내에서 멸치 에셋을 등록하고 수정하는 Windows 저작 도구의 3D 엔진을 개발했습니다. 아래 갤러리가 이 툴의 화면입니다.
+사내에서 멸치 에셋을 등록하고 수정하는 Windows 저작 도구의 3D 엔진을 개발했습니다. 이 툴의 화면은 페이지 맨 아래 갤러리에 있습니다.
 
 - scene graph 기반 엔진의 노드별 3D 렌더링 로직, 카메라 시스템, transform 개발
 - GLSL shader로 shading과 texture 적용 구현
@@ -57,7 +57,7 @@ media:
 - OpenGL/C++ 엔진과 WPF UI 툴 연동
 - FFmpeg 기반 미디어 엔진 유지보수
 
-기술: Windows, C++, OpenGL, GLSL, WPF, FFmpeg
+**기술** · Windows, C++, OpenGL, GLSL, WPF, FFmpeg
 
 ## 멸치 모바일 Android 엔진 — 그래픽 기능
 
@@ -72,6 +72,8 @@ media:
 - 안드로이드 앱-엔진 연동 개발
   - FlatBuffers, Kotlin을 통한 앱-엔진 통신 기능 구현
 
+**기술** · Android, C++, Skia, SkSL, Skottie, Kotlin, FlatBuffers
+
 ## 멸치 모바일 iOS 엔진 포팅 및 개발
 
 *2021.01 ~ 2022.07*
@@ -83,6 +85,8 @@ Android 엔진을 iOS로 포팅하고 iOS 미디어 엔진을 개발·연동했�
 - AVFoundation 기반 iOS 미디어 엔진(encoder, decoder) 개발 및 연동
 - 개인 시간에 Metal 테스트 앱으로 포팅 구조를 선행 검증하고 아키텍처를 제안, 채택되어 일정 단축에 기여
 
+**기술** · iOS, C++, Objective-C++, Swift, AVFoundation, FlatBuffers
+
 ## 멸치 iOS 앱 개발
 
 *2021.05 ~ 2022.07*
@@ -92,4 +96,4 @@ Android 엔진을 iOS로 포팅하고 iOS 미디어 엔진을 개발·연동했�
 - iOS 엔진, Google Firebase, AdMob 연동
 - 멸치 쇼핑 iOS 앱 개발 (웹앱)
 
-기술: Swift, UIKit, Storyboard, SnapKit, RxSwift
+**기술** · Swift, UIKit, Storyboard, SnapKit, RxSwift

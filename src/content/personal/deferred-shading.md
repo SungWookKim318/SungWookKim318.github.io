@@ -55,4 +55,4 @@ media:
     caption: Deferred Shading
 ---
 
-OpenGL tutorial의 예제 중에서 Deferred shading(지연 처리 쉐이딩)을 구현하고 거기에 point 광원을 구현한 후 큐브맵 그림자를 구현하고, multi-pass 렌더링을 구현하여 다중 광원과 그림자를 구현한 프로젝트입니다. 성만규 교수님의 조언과 검토를 받으며 구현하였습니다.
+OpenGL tutorial의 예제 가운데 Deferred shading(지연 처리 셰이딩)을 구현하고, 여기에 point 광원과 큐브맵 그림자를 더했습니다. multi-pass 렌더링으로 다중 광원과 그림자를 처리했습니다. 성만규 교수님의 조언과 검토를 받으며 작업했습니다.

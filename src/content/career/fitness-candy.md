@@ -20,7 +20,7 @@ highlights:
 - 외부 광고 플랫폼 연동 개발 (Adjust, Facebook, Google, Kakao)
 - 안드로이드 외부 인력 관리 (2023.02 ~ 2023.03)
 
-기술: Swift, SwiftUI, WatchKit
+**기술** · Swift, SwiftUI, WatchKit
 
 ## 이닛(INIT) React Native 앱
 
@@ -32,7 +32,7 @@ highlights:
 - 외부 쿠폰 마켓 화면 개발
 - 본인 인증 기능 화면 개발
 
-기술: React Native, TypeScript
+**기술** · React Native, TypeScript
 
 ## 이닛 CI/CD 구축
 
@@ -40,3 +40,5 @@ highlights:
 
 - Bitbucket Pipelines와 Python 3, Fastlane을 통한 CI/CD 구현
 - 사내 프런트엔드 개발 규칙과 프로세스 확립
+
+**기술** · Bitbucket Pipelines, Python 3, Fastlane

@@ -3,7 +3,7 @@ title: "SSAO tutorial"
 subtitle: "OpenGL AO practice"
 period: "2019.02 ~ 2019.03"
 platform: "x86, AMD64 (GLFW 기반)"
-summary: "주변폐색(AO)에서 많이 쓰이는 SSAO를 구현해보았습니다."
+summary: "주변폐색(AO) 기법 중 하나인 SSAO를 구현했습니다."
 order: 10
 stack:
   - "OpenGL (glew)"
@@ -36,4 +36,4 @@ media:
     caption: SSAO
 ---
 
-OpenGL Tutorial에서 나온 예제를 따라해보고 학습해보는 학습 프로젝트입니다. 현재 게임업계에서 많이 쓰이는 주변폐색(AO)에서 많이 쓰이는 SSAO를 구현해보았습니다.
+OpenGL Tutorial의 예제를 따라 하며 학습한 프로젝트입니다. 주변폐색(Ambient Occlusion) 기법 가운데 게임업계에서 널리 쓰이는 SSAO를 구현했습니다.

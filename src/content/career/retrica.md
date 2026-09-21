@@ -26,7 +26,7 @@ Retrica와 Retrica Packs가 공통으로 사용하는 iOS 내부 그래픽스 �
 - Image / Video decoder 포팅 및 개선, 카메라 기능 연동
 - 비디오·이미지 Exporter 개발
 
-기술: Swift, Objective-C, Metal, Metal Performance Shaders, Core Image, AVFoundation
+**기술** · Swift, Objective-C, Metal, Metal Performance Shaders, Core Image, AVFoundation
 
 ## Retrica Packs — Renderer 최적화
 
@@ -35,3 +35,5 @@ Retrica와 Retrica Packs가 공통으로 사용하는 iOS 내부 그래픽스 �
 - Packs 내부 Metal renderer 설정 최적화
 - Stream-texture 구조 단독 개선
 - 출시 후 발생한 그래픽 문제 분석 및 수정
+
+**기술** · Swift, Metal
