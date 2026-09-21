@@ -26,10 +26,12 @@ links:
 iOS, Android, Web에서 동작하는 Kotlin Multiplatform 런타임 기반의 고정밀 프로토타이핑 플랫폼입니다. Engine & Player 팀에서 코어 엔진과 Rust/wgpu 기반 Web 렌더러, iOS·Android·HarmonyOS Player 앱을 개발합니다.
 
 ## New Renderer — 벡터·클리핑·마스크 렌더링
+{/* 제목이 너무 영역이 좁으니 조금 다듬기 */}
 
 *2025.11 ~ 현재*
 
 기존 DOM 방식의 Web 렌더러를 대체하는 Rust/wgpu 렌더러에서 벡터 path, 스크롤, 클리핑·마스크 기능을 개발했습니다. 도입 목표와 마일스톤을 수립하고 엔진·SDK·렌더러 간 연동도 주도했습니다.
+{/* 추가로 내용을 조금 더 넣기, 전체적으로 어떻게 해야하는지 조언한거랑 아키텍쳐 어떻게 해야한다고 한거랑 */}
 
 - Star/Polygon 도형을 기존 vector path와 tessellation 경로로 렌더링하도록 지원
 - 스크롤 오프셋이 컨테이너의 자식 레이어에 적용되도록 scene graph와 render graph 처리 구현
@@ -44,6 +46,9 @@ iOS, Android, Web에서 동작하는 Kotlin Multiplatform 런타임 기반의 �
 
 *2026.02 ~ 현재*
 
+{/* 내가 한거 요약/설명 추가 */}
+
+
 - KMM 코어 엔진에서 Star/Polygon 벡터 도형의 path 데이터를 계산하고, SDK용 Stroke 명령과 mask 관계 명령 구현
 - KMM/JS 엔진 명령을 Rust/WASM 렌더러 명령으로 변환하는 브리지 SDK 설계·개발
 - JSON reference path와 binary fast path 두 전송 경로의 결과를 비교하는 parity 검증 체계 구축
@@ -55,6 +60,7 @@ iOS, Android, Web에서 동작하는 Kotlin Multiplatform 런타임 기반의 �
 *2024.12 ~ 현재*
 
 코어 엔진의 Web Preview 기능을 개발하고 팀의 엔진 변경을 검수·통합했습니다.
+{/* Core Engine에 Web Renderer/Preview만 있는게 아니라, 내부 로직까지 있으니 이 내용이 추가 되어야한다. */}
 
 - User Testing을 위한 Web Preview 카메라 지원과 녹화·방송 동시 실행 기능 개발
 - iOS WebView 연동을 위한 JS 메시지 전달과 키보드 동작 보완
@@ -66,7 +72,7 @@ iOS, Android, Web에서 동작하는 Kotlin Multiplatform 런타임 기반의 �
 
 *2024.09 ~ 2025.01*
 
-KMM Engine과 Web을 위한 Renderer를 개발하는 POC 중간에 참여하여 진행하였습니다.
+KMM Engine과 Web을 위한 Renderer를 개발하는 POC 중간에 참여하여 진행하였습니다. {/* 내용 확인하고 다듬기 */}
 
 - Primitive Layer(Line, Triangle, Polygon)와 Text Box 개발
 - Asset Manager 단독 설계·개발
@@ -78,6 +84,7 @@ KMM Engine과 Web을 위한 Renderer를 개발하는 POC 중간에 참여하여 
 *2026.04*
 
 AI 에이전트가 프로토타입을 직접 생성하고 수정하는 방식을 제안하고, 아키텍처와 단계별 로드맵 수립부터 구현까지 단독 진행했습니다.
+{/* 내가 아이디어를 제안했지 혼자 한 것이 아니니까, 단독이라는 내용은 빼고 다듬기 */}
 
 - VS Code Extension (webview wrapper, CSP 적용, 패널) 개발
 - MCP 서버 개발로 Claude Code, Codex 등 복수 에이전트가 WASM 렌더러를 제어하도록 연동
@@ -92,7 +99,7 @@ AI 에이전트가 프로토타입을 직접 생성하고 수정하는 방식을
 ArkTS/ArkUI 기반 Player를 신규 개발해 공식 앱스토어에 출시했습니다.
 
 - Rust Engine 포팅 PoC를 제품 코드에 적용하고 UI와 엔진을 연결하는 native bridge와 실행 흐름 구현
-<!--내용 추가 필요, 앱개발, rust Engine 포팅, 같은 내용도 추가 필요-->
+{/* 항목 추가 필요, 앱개발, rust Engine 포팅, 같은 내용도 추가 필요 */}
 
 **기술** · ArkTS, ArkUI, Rust, C++, Cmake
 
