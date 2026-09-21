@@ -1,0 +1,95 @@
+---
+title: "리치빔 (멸치)"
+subtitle: "IT사업부 렌더링 개발자 (매니저)"
+period: "2019.07 ~ 2022.07"
+summary: "OpenGL/C++ 3D 엔진으로 커리어를 시작해, 같은 엔진을 Android와 iOS로 확장했습니다."
+order: 40
+highlights:
+  - "멸치 에셋 편집/등록 툴 — OpenGL/C++ 3D 엔진"
+  - "멸치 모바일 Android 엔진 — 그래픽 기능"
+  - "멸치 모바일 iOS 엔진 포팅 및 개발"
+  - "멸치 iOS 앱 개발"
+links:
+  - label: mel-chi.co.kr
+    url: https://mel-chi.co.kr/
+media:
+  - src: /media/career/melchi-tool/01.webp
+    kind: image
+    width: 1018
+    height: 573
+  - src: /media/career/melchi-tool/02.webp
+    kind: image
+    width: 458
+    height: 815
+  - src: /media/career/melchi-tool/03.webp
+    kind: image
+    width: 458
+    height: 815
+  - src: /media/career/melchi-tool/04.webp
+    kind: image
+    width: 458
+    height: 815
+  - src: /media/career/melchi-tool/05.webp
+    kind: image
+    width: 458
+    height: 815
+  - src: /media/career/melchi-tool/06.webp
+    kind: image
+    width: 458
+    height: 815
+  - src: /media/career/melchi-tool/07.webp
+    kind: image
+    width: 458
+    height: 815
+---
+
+템플릿 기반 실시간 영상 제작 서비스 멸치의 Windows 저작 도구와 모바일 애플리케이션에 쓰이는 엔진을 개발했습니다.
+
+## 멸치 에셋 편집/등록 툴 — OpenGL/C++ 3D 엔진
+
+*2019.07 ~ 2020.07*
+
+사내에서 멸치 에셋을 등록하고 수정하는 Windows 저작 도구의 3D 엔진을 개발했습니다. 아래 갤러리가 이 툴의 화면입니다.
+
+- scene graph 기반 엔진의 노드별 3D 렌더링 로직, 카메라 시스템, transform 개발
+- GLSL shader로 shading과 texture 적용 구현
+- 상용 3D 저작 도구의 조작 방식을 참고해 3D viewport GUI 개선안을 제안하고 프로토타입으로 구현. transform gizmo와 picking이 제품에 반영
+- OpenGL/C++ 엔진과 WPF UI 툴 연동
+- FFmpeg 기반 미디어 엔진 유지보수
+
+기술: Windows, C++, OpenGL, GLSL, WPF, FFmpeg
+
+## 멸치 모바일 Android 엔진 — 그래픽 기능
+
+*2020.07 ~ 2021.01*
+
+멸치 모바일 엔진의 VFX 개발, 간단 제작 모드 앱 연동을 담당했습니다.
+
+- Skia 기반 엔진
+- 모바일 그래픽스 엔진의 필요 기능 개발
+  - 직접편집 엔진에 필요한 이펙트, 효과 개발
+  - Skia의 SkSL, Skottie를 활용한 이펙트, 효과 개발
+- 안드로이드 앱-엔진 연동 개발
+  - FlatBuffers, Kotlin을 통한 앱-엔진 통신 기능 구현
+
+## 멸치 모바일 iOS 엔진 포팅 및 개발
+
+*2021.01 ~ 2022.07*
+
+Android 엔진을 iOS로 포팅하고 iOS 미디어 엔진을 개발·연동했습니다.
+
+- 엔진의 오픈소스 의존성을 iOS용으로 빌드하고 적용
+- Swift와 Objective-C++로 앱-엔진 bridge 단독 구현 (FlatBuffers)
+- AVFoundation 기반 iOS 미디어 엔진(encoder, decoder) 개발 및 연동
+- 개인 시간에 Metal 테스트 앱으로 포팅 구조를 선행 검증하고 아키텍처를 제안, 채택되어 일정 단축에 기여
+
+## 멸치 iOS 앱 개발
+
+*2021.05 ~ 2022.07*
+
+- iOS UI와 비즈니스 로직 개발, 출시 후 유지보수
+- RxSwift 코드베이스를 Clean Swift(VIP) 아키텍처로 단독 리팩터링
+- iOS 엔진, Google Firebase, AdMob 연동
+- 멸치 쇼핑 iOS 앱 개발 (웹앱)
+
+기술: Swift, UIKit, Storyboard, SnapKit, RxSwift

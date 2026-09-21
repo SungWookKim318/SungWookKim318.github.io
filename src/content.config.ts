@@ -31,6 +31,7 @@ const base = z.object({
   engine: z.string().optional(),
   teamSize: z.string().optional(),
   stack: z.array(z.string()).default([]),
+  highlights: z.array(z.string()).default([]),  // 랜딩 카드에 보여줄 하위 프로젝트명
   media: z.array(media).default([]),
   links: z.array(link).default([]),
   draft: z.boolean().default(false),

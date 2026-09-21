@@ -12,15 +12,6 @@ const career = (await getCollection('career', published)).sort(byOrder);
 const personal = (await getCollection('personal', published)).sort(byOrder);
 const academic = (await getCollection('academic', published)).sort(byOrder);
 
-// career는 회사별로 묶는다. order가 회사 순서도 함께 결정한다.
-const companies: { name: string; items: typeof career }[] = [];
-for (const entry of career) {
-  const name = entry.data.company ?? '기타';
-  const last = companies.at(-1);
-  if (last?.name === name) last.items.push(entry);
-  else companies.push({ name, items: [entry] });
-}
-
 const timeline = [
   { period: '2024.09 –', org: '스튜디오씨드코리아 (Studio XID Korea / ProtoPie)', role: 'Product Development 3 소프트웨어 개발자' },
   { period: '2024.02 – 2024.08', org: '레트리카 (Retrica)', role: 'iOS 그래픽스/렌더러 엔지니어' },
@@ -70,21 +61,15 @@ const timeline = [
     </Section>
 
     <Section id="career" title="Career">
-      {companies.map((c) => (
-        <div class="mt-10 first:mt-0">
-          <h3 class="text-base font-semibold">{c.name}</h3>
-          <div>
-            {c.items.map((e) => (
-              <ProjectCard
-                href={`/career/${e.id}`}
-                title={e.data.title}
-                period={e.data.period}
-                summary={e.data.summary}
-                stack={e.data.stack}
-              />
-            ))}
-          </div>
-        </div>
+      {career.map((e) => (
+        <ProjectCard
+          href={`/career/${e.id}`}
+          title={e.data.title}
+          subtitle={e.data.subtitle}
+          period={e.data.period}
+          summary={e.data.summary}
+          highlights={e.data.highlights}
+        />
       ))}
     </Section>
 

@@ -7,8 +7,9 @@ interface Props {
   summary: string;
   meta?: string;
   stack?: string[];
+  highlights?: string[];
 }
-const { href, title, subtitle, period, summary, meta, stack = [] } = Astro.props;
+const { href, title, subtitle, period, summary, meta, stack = [], highlights = [] } = Astro.props;
 ---
 
 <a
@@ -22,6 +23,13 @@ const { href, title, subtitle, period, summary, meta, stack = [] } = Astro.props
   </div>
   {meta && <p class="mt-1 text-sm text-[var(--color-muted)]">{meta}</p>}
   <p class="mt-2 max-w-[70ch] text-[var(--color-muted)]">{summary}</p>
+  {highlights.length > 0 && (
+    <ul class="mt-3 space-y-1 text-sm text-[var(--color-muted)]">
+      {highlights.map((h) => (
+        <li class="before:mr-2 before:text-[var(--color-line)] before:content-['—']">{h}</li>
+      ))}
+    </ul>
+  )}
   {stack.length > 0 && (
     <ul class="mt-3 flex flex-wrap gap-1.5">
       {stack.map((s) => (
