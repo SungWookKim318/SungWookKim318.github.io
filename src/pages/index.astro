@@ -39,7 +39,7 @@ const skills = [
 ---
 
 <Base title="김성욱 | Graphics / Rendering Engine Software Engineer">
-  <main class="mx-auto max-w-[880px] px-6 py-24">
+  <main class="mx-auto max-w-[1120px] px-6 py-24">
     <header>
       <h1 class="text-4xl font-bold tracking-tight sm:text-5xl">김성욱</h1>
       <p class="mt-3 text-lg text-[var(--color-accent)]">
@@ -76,7 +76,7 @@ const skills = [
         {skills.map((s) => (
           <li class="grid gap-1 py-5 sm:grid-cols-[110px_1fr] sm:gap-6">
             <span class="text-sm font-medium">{s.label}</span>
-            <span class="text-[var(--color-muted)]">{s.items}</span>
+            <span class="max-w-[68ch] text-[var(--color-muted)]">{s.items}</span>
           </li>
         ))}
       </ul>

@@ -23,7 +23,7 @@ const facts = [
 ---
 
 <Base title={`${d.title} | 김성욱`} description={d.summary}>
-  <main class="mx-auto max-w-[880px] px-6 py-16">
+  <main class="mx-auto max-w-[1120px] px-6 py-16">
     <a
       href={backHref}
       class="text-sm text-[var(--color-muted)] underline-offset-4 hover:underline"
@@ -83,6 +83,7 @@ const facts = [
   .prose-body :global(p) {
     margin-block: 1em;
     line-height: 1.75;
+    max-width: 68ch;
   }
   .prose-body :global(h3) {
     margin-block: 2em 0.75em;
@@ -97,6 +98,7 @@ const facts = [
   .prose-body :global(li) {
     margin-block: 0.4em;
     line-height: 1.7;
+    max-width: 68ch;
   }
   .prose-body :global(li > ul) {
     margin-block: 0.4em;
