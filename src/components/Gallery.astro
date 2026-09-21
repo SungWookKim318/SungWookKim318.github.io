@@ -1,21 +1,274 @@
 ---
-import Media from './Media.astro';
-
+// 캐러셀 갤러리. 큰 화면 하나 + 아래 썸네일 스트립 + 좌우 화살표.
+// JS가 없으면 첫 장만 보인다.
+interface Item {
+  src: string;
+  kind?: 'image' | 'loop' | 'video';
+  caption?: string;
+  poster?: string;
+  width: number;
+  height: number;
+}
 interface Props {
-  items: Array<{
-    src: string;
-    kind?: 'image' | 'loop' | 'video';
-    caption?: string;
-    poster?: string;
-    width: number;
-    height: number;
-  }>;
+  items: Item[];
 }
 const { items } = Astro.props;
+const many = items.length > 1;
 ---
 
 {items.length > 0 && (
-  <div class="mt-10 grid gap-6 sm:grid-cols-2 sm:items-start">
-    {items.map((m, i) => <Media {...m} eager={i < 2} />)}
+  <div class="gal not-prose" data-gallery tabindex="0" role="group" aria-roledescription="갤러리">
+    <div class="stage">
+      {items.map((m, i) => (
+        <div class="slide" data-slide data-caption={m.caption ?? ''} hidden={i !== 0}>
+          {m.kind === 'image' || !m.kind ? (
+            <img
+              src={m.src}
+              alt={m.caption ?? ''}
+              width={m.width}
+              height={m.height}
+              loading={i === 0 ? 'eager' : 'lazy'}
+              decoding="async"
+            />
+          ) : m.kind === 'loop' ? (
+            <video
+              src={m.src}
+              poster={m.poster}
+              width={m.width}
+              height={m.height}
+              autoplay={i === 0}
+              muted
+              loop
+              playsinline
+              preload="metadata"
+            />
+          ) : (
+            <video
+              src={m.src}
+              poster={m.poster}
+              width={m.width}
+              height={m.height}
+              controls
+              playsinline
+              preload="none"
+            />
+          )}
+        </div>
+      ))}
+
+      {many && (
+        <>
+          <button class="nav prev" data-prev type="button" aria-label="이전 항목">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7" /></svg>
+          </button>
+          <button class="nav next" data-next type="button" aria-label="다음 항목">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7" /></svg>
+          </button>
+        </>
+      )}
+    </div>
+
+    <p class="cap" data-caption-out>{items[0].caption ?? ''}</p>
+
+    {many && (
+      <div class="thumbs" data-thumbs>
+        {items.map((m, i) => (
+          <button
+            class="thumb"
+            data-thumb
+            type="button"
+            aria-current={i === 0 ? 'true' : 'false'}
+            aria-label={m.caption ?? `${i + 1}번째 항목`}
+          >
+            <img src={m.poster ?? m.src} alt="" loading="lazy" decoding="async" />
+            {m.kind !== 'image' && m.kind && <span class="play" aria-hidden="true">▶</span>}
+          </button>
+        ))}
+      </div>
+    )}
   </div>
 )}
+
+<style>
+  .gal {
+    margin-block: 2.5rem;
+  }
+  .gal:focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 6px;
+    border-radius: 0.5rem;
+  }
+
+  /* 세로·가로 이미지가 섞여 있어 높이를 고정해야 넘길 때 안 흔들린다 */
+  .stage {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: clamp(260px, 56vh, 520px);
+    background: color-mix(in srgb, var(--color-ink) 6%, transparent);
+    border: 1px solid var(--color-line);
+    border-radius: 0.5rem;
+    overflow: hidden;
+  }
+  .slide {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .slide[hidden] {
+    display: none;
+  }
+  .slide :global(img),
+  .slide :global(video) {
+    max-width: 100%;
+    max-height: 100%;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+  }
+
+  .nav {
+    position: absolute;
+    top: 50%;
+    translate: 0 -50%;
+    display: grid;
+    place-items: center;
+    width: 2.75rem;
+    height: 2.75rem;
+    border-radius: 999px;
+    border: 1px solid var(--color-line);
+    background: color-mix(in srgb, var(--color-surface) 82%, transparent);
+    backdrop-filter: blur(6px);
+    color: var(--color-ink);
+    cursor: pointer;
+    opacity: 0;
+    transition: opacity 0.15s;
+  }
+  .gal:hover .nav,
+  .gal:focus-within .nav {
+    opacity: 1;
+  }
+  .nav:hover {
+    border-color: var(--color-accent);
+    color: var(--color-accent);
+  }
+  .prev {
+    left: 0.75rem;
+  }
+  .next {
+    right: 0.75rem;
+  }
+  .nav svg {
+    width: 1.25rem;
+    height: 1.25rem;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+  /* 터치 기기에는 hover가 없으니 항상 보인다 */
+  @media (hover: none) {
+    .nav {
+      opacity: 1;
+    }
+  }
+
+  .cap {
+    margin: 0.75rem 0 0;
+    min-height: 1.25rem;
+    font-size: 0.875rem;
+    color: var(--color-muted);
+  }
+  .cap:empty::before {
+    content: '\00a0';
+  }
+
+  .thumbs {
+    display: flex;
+    gap: 0.5rem;
+    margin-top: 0.75rem;
+    padding-bottom: 0.25rem;
+    overflow-x: auto;
+    scrollbar-width: thin;
+    scroll-snap-type: x proximity;
+  }
+  .thumb {
+    position: relative;
+    flex: 0 0 auto;
+    width: 5.5rem;
+    height: 3.5rem;
+    padding: 0;
+    border: 1px solid var(--color-line);
+    border-radius: 0.25rem;
+    overflow: hidden;
+    cursor: pointer;
+    opacity: 0.5;
+    transition: opacity 0.15s, border-color 0.15s;
+    scroll-snap-align: start;
+    background: none;
+  }
+  .thumb:hover {
+    opacity: 0.85;
+  }
+  .thumb[aria-current='true'] {
+    opacity: 1;
+    border-color: var(--color-accent);
+  }
+  .thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  .thumb .play {
+    position: absolute;
+    right: 0.25rem;
+    bottom: 0.125rem;
+    font-size: 0.625rem;
+    color: #fff;
+    text-shadow: 0 0 3px rgb(0 0 0 / 0.8);
+  }
+</style>
+
+<script>
+  document.querySelectorAll<HTMLElement>('[data-gallery]').forEach((gal) => {
+    const slides = Array.from(gal.querySelectorAll<HTMLElement>('[data-slide]'));
+    const thumbs = Array.from(gal.querySelectorAll<HTMLElement>('[data-thumb]'));
+    const out = gal.querySelector<HTMLElement>('[data-caption-out]');
+    if (slides.length < 2) return;
+
+    let cur = 0;
+    const show = (next: number) => {
+      cur = (next + slides.length) % slides.length;
+      slides.forEach((s, i) => {
+        const on = i === cur;
+        s.hidden = !on;
+        const v = s.querySelector('video');
+        if (!v) return;
+        // 보이지 않는 영상은 멈춘다. loop(원래 GIF)만 자동 재생을 이어간다
+        if (on && v.hasAttribute('loop')) v.play().catch(() => {});
+        else v.pause();
+      });
+      thumbs.forEach((t, i) => t.setAttribute('aria-current', String(i === cur)));
+      if (out) out.textContent = slides[cur].dataset.caption || '';
+      thumbs[cur]?.scrollIntoView({ block: 'nearest', inline: 'nearest' });
+    };
+
+    gal.querySelector('[data-prev]')?.addEventListener('click', () => show(cur - 1));
+    gal.querySelector('[data-next]')?.addEventListener('click', () => show(cur + 1));
+    thumbs.forEach((t, i) => t.addEventListener('click', () => show(i)));
+    gal.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowLeft') {
+        e.preventDefault();
+        show(cur - 1);
+      } else if (e.key === 'ArrowRight') {
+        e.preventDefault();
+        show(cur + 1);
+      }
+    });
+  });
+</script>
