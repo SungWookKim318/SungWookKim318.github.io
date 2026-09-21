@@ -1,0 +1,112 @@
+---
+import Base from './Base.astro';
+import Gallery from '../components/Gallery.astro';
+import type { CollectionEntry } from 'astro:content';
+
+interface Props {
+  entry: CollectionEntry<'career' | 'personal' | 'academic'>;
+  backLabel: string;
+  backHref: string;
+}
+const { entry, backLabel, backHref } = Astro.props;
+const d = entry.data;
+
+// 있는 것만 정의 목록으로 보여준다
+const facts = [
+  ['소속', d.company],
+  ['기간', d.period],
+  ['플랫폼', d.platform],
+  ['엔진', d.engine],
+  ['역할', d.role],
+  ['팀 규모', d.teamSize],
+].filter(([, v]) => v) as [string, string][];
+---
+
+<Base title={`${d.title} | 김성욱`} description={d.summary}>
+  <main class="mx-auto max-w-[880px] px-6 py-16">
+    <a
+      href={backHref}
+      class="text-sm text-[var(--color-muted)] underline-offset-4 hover:underline"
+    >
+      ← {backLabel}
+    </a>
+
+    <header class="mt-8">
+      <h1 class="text-3xl font-bold tracking-tight sm:text-4xl">{d.title}</h1>
+      {d.subtitle && <p class="mt-2 text-[var(--color-muted)]">{d.subtitle}</p>}
+
+      <dl class="mt-8 grid gap-x-6 gap-y-2 text-[15px] sm:grid-cols-[100px_1fr]">
+        {facts.map(([k, v]) => (
+          <>
+            <dt class="text-[var(--color-muted)]">{k}</dt>
+            <dd class="m-0">{v}</dd>
+          </>
+        ))}
+      </dl>
+
+      {d.stack.length > 0 && (
+        <ul class="mt-6 flex flex-wrap gap-1.5">
+          {d.stack.map((s) => (
+            <li class="rounded border border-[var(--color-line)] px-2 py-0.5 text-xs text-[var(--color-muted)]">
+              {s}
+            </li>
+          ))}
+        </ul>
+      )}
+
+      {d.links.length > 0 && (
+        <ul class="mt-6 flex flex-wrap gap-3">
+          {d.links.map((l) => (
+            <li>
+              <a
+                href={l.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="text-sm text-[var(--color-accent)] underline underline-offset-4"
+              >
+                {l.label} ↗
+              </a>
+            </li>
+          ))}
+        </ul>
+      )}
+    </header>
+
+    <div class="prose-body mt-12"><slot /></div>
+
+    <Gallery items={d.media} />
+  </main>
+</Base>
+
+<style>
+  /* Markdown 본문. Tailwind typography 플러그인 대신 필요한 것만 직접 정의 */
+  .prose-body :global(p) {
+    margin-block: 1em;
+    line-height: 1.75;
+  }
+  .prose-body :global(h3) {
+    margin-block: 2em 0.75em;
+    font-size: 1.05rem;
+    font-weight: 600;
+  }
+  .prose-body :global(ul) {
+    margin-block: 1em;
+    padding-left: 1.2em;
+    list-style: disc;
+  }
+  .prose-body :global(li) {
+    margin-block: 0.4em;
+    line-height: 1.7;
+  }
+  .prose-body :global(li > ul) {
+    margin-block: 0.4em;
+  }
+  .prose-body :global(a) {
+    color: var(--color-accent);
+    text-decoration: underline;
+    text-underline-offset: 4px;
+  }
+  .prose-body :global(strong) {
+    font-weight: 600;
+  }
+</style>

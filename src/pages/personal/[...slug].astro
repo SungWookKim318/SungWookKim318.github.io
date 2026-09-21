@@ -1,0 +1,16 @@
+---
+import { getCollection, render } from 'astro:content';
+import Project from '../../layouts/Project.astro';
+
+export async function getStaticPaths() {
+  const entries = await getCollection('personal', ({ data }) => !data.draft);
+  return entries.map((entry) => ({ params: { slug: entry.id }, props: { entry } }));
+}
+
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+---
+
+<Project entry={entry} backLabel="Personal Projects" backHref="/#personal">
+  <Content />
+</Project>

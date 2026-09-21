@@ -1,0 +1,21 @@
+---
+import Media from './Media.astro';
+
+interface Props {
+  items: Array<{
+    src: string;
+    kind?: 'image' | 'loop' | 'video';
+    caption?: string;
+    poster?: string;
+    width: number;
+    height: number;
+  }>;
+}
+const { items } = Astro.props;
+---
+
+{items.length > 0 && (
+  <div class="mt-10 grid gap-6 sm:grid-cols-2 sm:items-start">
+    {items.map((m, i) => <Media {...m} eager={i < 2} />)}
+  </div>
+)}
