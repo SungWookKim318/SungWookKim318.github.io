@@ -48,7 +48,7 @@ iOS, Android, Web에서 동작하는 Kotlin Multiplatform 런타임 기반의 �
 - KMM/JS 엔진 명령을 Rust/WASM 렌더러 명령으로 변환하는 브리지 SDK 설계·개발
 - JSON reference path와 binary fast path 두 전송 경로의 결과를 비교하는 parity 검증 체계 구축
 
-**기술** · Kotlin Multiplatform, Kotlin/JS, TypeScript, Rust, WASM
+**기술** · Kotlin Multiplatform (Kotlin/JS), TypeScript, Rust, WASM
 
 ## KMM Core Engine — User Testing 및 엔진 통합
 
@@ -60,7 +60,7 @@ iOS, Android, Web에서 동작하는 Kotlin Multiplatform 런타임 기반의 �
 - iOS WebView 연동을 위한 JS 메시지 전달과 키보드 동작 보완
 - 요구사항을 개발 계획과 마일스톤으로 구체화하고 핵심 기능의 코드 리뷰, 통합, 릴리스 관리
 
-**기술** · Kotlin Multiplatform, Kotlin/JS
+**기술** · Kotlin Multiplatform, Android, iOS
 
 ## Web Engine PoC — PixiJS
 
@@ -71,7 +71,7 @@ KMM Engine과 Web을 위한 Renderer를 개발하는 POC 중간에 참여하여 
 - Primitive Layer(Line, Triangle, Polygon)와 Text Box 개발
 - Asset Manager 단독 설계·개발
 
-**기술** · TypeScript, PixiJS
+**기술** · TypeScript, PixiJS, React, zustandard
 
 ## AI Agent Extension PoC
 
@@ -92,8 +92,9 @@ AI 에이전트가 프로토타입을 직접 생성하고 수정하는 방식을
 ArkTS/ArkUI 기반 Player를 신규 개발해 공식 앱스토어에 출시했습니다.
 
 - Rust Engine 포팅 PoC를 제품 코드에 적용하고 UI와 엔진을 연결하는 native bridge와 실행 흐름 구현
+<!--내용 추가 필요, 앱개발, rust Engine 포팅, 같은 내용도 추가 필요-->
 
-**기술** · ArkTS, ArkUI, Rust
+**기술** · ArkTS, ArkUI, Rust, C++, Cmake
 
 ## iOS Player — App Clip 및 User Testing
 
@@ -102,7 +103,7 @@ ArkTS/ArkUI 기반 Player를 신규 개발해 공식 앱스토어에 출시했�
 - Player App Clip(2025.02 ~ 2025.09)의 타당성 검토부터 설계, UI, App Store 출시까지 단독 담당. 공통 로직 모듈 분리와 정적 링크 전환으로 10MB 바이너리 제한 충족
 - User Testing(2025.07 ~ 2025.11)용 type-safe JS-Native bridge 개발. 요구사항을 코어 엔진, iOS, Android, Web Preview의 구현 계획으로 구체화하고 저장소별 작업 분배와 통합 조율
 
-**기술** · Swift, UIKit, WebView
+**기술** · Swift, UIKit, WebView, Kotlin Multiplatform
 
 ## Android Player — User Testing
 
@@ -111,7 +112,7 @@ ArkTS/ArkUI 기반 Player를 신규 개발해 공식 앱스토어에 출시했�
 - User Testing용 native bridge 개발. WebView 카메라·마이크 권한, 딥링크 진입, 세션 토큰, 물리 키 이벤트 연동
 - 핵심 기능 개발자의 변경 사항을 코드 리뷰하고 기능 통합 지원
 
-**기술** · Kotlin, Android WebView
+**기술** · Kotlin, Kotlin Multiplatform, Android, WebView
 
 ## 개발 인프라 — 정적 분석과 AI 코드 리뷰
 
