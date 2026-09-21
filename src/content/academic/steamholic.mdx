@@ -8,36 +8,18 @@ engine: "자체 개발 엔진 (DirectX 9, WinAPI, FMOD)"
 teamSize: "5인"
 summary: "외부 엔진 없이 자체 엔진으로 만든 2D 플랫폼 게임. 프로듀서와 물리엔진 개발을 맡았습니다."
 order: 30
-media:
-  - src: /media/academic/steamholic/01.webp
-    kind: image
-    width: 1024
-    height: 768
-  - src: /media/academic/steamholic/02.webp
-    kind: image
-    width: 1024
-    height: 768
-  - src: /media/academic/steamholic/03.webp
-    kind: image
-    width: 1024
-    height: 768
-  - src: /media/academic/steamholic/04.webp
-    kind: image
-    width: 800
-    height: 600
-    caption: 기술 설명
-  - src: /media/academic/steamholic/05.webp
-    kind: image
-    width: 1024
-    height: 768
-    caption: 타이틀
-  - src: /media/academic/steamholic/06.mp4
-    kind: video
-    width: 1280
-    height: 720
-    poster: /media/academic/steamholic/06-poster.jpg
-    caption: 플레이 영상
 ---
+
+import Gallery from '../../components/Gallery.astro';
+
+<Gallery items={[
+  { src: "/media/academic/steamholic/01.webp", kind: "image", width: 1024, height: 768 },
+  { src: "/media/academic/steamholic/02.webp", kind: "image", width: 1024, height: 768 },
+  { src: "/media/academic/steamholic/03.webp", kind: "image", width: 1024, height: 768 },
+  { src: "/media/academic/steamholic/04.webp", kind: "image", width: 800, height: 600, caption: "기술 설명" },
+  { src: "/media/academic/steamholic/05.webp", kind: "image", width: 1024, height: 768, caption: "타이틀" },
+  { src: "/media/academic/steamholic/06.mp4", kind: "video", width: 1280, height: 720, poster: "/media/academic/steamholic/06-poster.jpg", caption: "플레이 영상" },
+]} />
 
 계명대학교 디지펜 복수학위과정에서 한국인 4명과 프랑스인 1명이 두 학기 동안 만들었습니다. David Ly 교수의 조언 아래에서 제작했고, 팀 내 대화는 전부 영어로 했습니다.
 

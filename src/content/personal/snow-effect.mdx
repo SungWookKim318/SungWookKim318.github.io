@@ -1,0 +1,27 @@
+---
+title: "Snow Effect"
+subtitle: "OpenGL Particle practice"
+period: "2019.03 ~ 2019.07"
+platform: "x86, AMD64 (GLFW, OpenGL 4.3 기반)"
+summary: "Compute Shader를 응용하여 눈 효과를 구현했습니다."
+order: 30
+stack:
+  - "OpenGL (glew)"
+  - "GLFW"
+  - "assimp"
+  - "imgui"
+links:
+  - label: Bitbucket
+    url: https://bitbucket.org/SungWook_Kim318/tankengine/src/master/
+---
+
+import Gallery from '../../components/Gallery.astro';
+
+<Gallery items={[
+  { src: "/media/personal/snow-effect/01.webp", kind: "image", width: 1282, height: 752, caption: "Snow v1 Demo 1" },
+  { src: "/media/personal/snow-effect/02.webp", kind: "image", width: 1282, height: 752, caption: "Snow v1 Demo 2" },
+  { src: "/media/personal/snow-effect/03.webp", kind: "image", width: 1282, height: 752, caption: "Snow v1 Demo 3" },
+  { src: "/media/personal/snow-effect/04.mp4", kind: "loop", width: 1280, height: 716, poster: "/media/personal/snow-effect/04-poster.jpg", caption: "Snow v1 Demo" },
+]} />
+
+Compute Shader를 응용해 조금 더 빠르고 사실적인 눈 효과를 그리는 개인 프로젝트입니다. 성만규 교수님의 조언과 검토를 받으며 작업했습니다.

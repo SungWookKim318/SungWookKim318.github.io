@@ -12,28 +12,15 @@ stack:
 links:
   - label: Google Drive
     url: https://drive.google.com/drive/folders/1jRoTlepP_cWgKmmjigmHUPau9HmtNpJQ?usp=share_link
-media:
-  - src: /media/personal/ssao/01.webp
-    kind: image
-    width: 1282
-    height: 752
-    caption: SSAO 1
-  - src: /media/personal/ssao/02.webp
-    kind: image
-    width: 1282
-    height: 752
-    caption: SSAO 2
-  - src: /media/personal/ssao/03.webp
-    kind: image
-    width: 1282
-    height: 752
-    caption: SSAO 3
-  - src: /media/personal/ssao/04.mp4
-    kind: loop
-    width: 1280
-    height: 720
-    poster: /media/personal/ssao/04-poster.jpg
-    caption: SSAO
 ---
+
+import Gallery from '../../components/Gallery.astro';
+
+<Gallery items={[
+  { src: "/media/personal/ssao/01.webp", kind: "image", width: 1282, height: 752, caption: "SSAO 1" },
+  { src: "/media/personal/ssao/02.webp", kind: "image", width: 1282, height: 752, caption: "SSAO 2" },
+  { src: "/media/personal/ssao/03.webp", kind: "image", width: 1282, height: 752, caption: "SSAO 3" },
+  { src: "/media/personal/ssao/04.mp4", kind: "loop", width: 1280, height: 720, poster: "/media/personal/ssao/04-poster.jpg", caption: "SSAO" },
+]} />
 
 OpenGL Tutorial의 예제를 따라 하며 학습한 프로젝트입니다. 주변폐색(Ambient Occlusion) 기법 가운데 게임업계에서 널리 쓰이는 SSAO를 구현했습니다.

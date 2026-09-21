@@ -8,48 +8,20 @@ engine: "학교 제공 그래픽 라이브러리"
 teamSize: "4인"
 summary: "2D 탑다운 퍼즐 게임. 기술감독과 사운드 엔진 구현을 맡았습니다."
 order: 40
-media:
-  - src: /media/academic/mouse-on-escape/01.webp
-    kind: image
-    width: 800
-    height: 600
-    caption: 게임화면 1
-  - src: /media/academic/mouse-on-escape/02.webp
-    kind: image
-    width: 800
-    height: 600
-    caption: 게임화면 2
-  - src: /media/academic/mouse-on-escape/03.webp
-    kind: image
-    width: 800
-    height: 600
-    caption: 게임화면 3
-  - src: /media/academic/mouse-on-escape/04.webp
-    kind: image
-    width: 1028
-    height: 770
-    caption: 타이틀
-  - src: /media/academic/mouse-on-escape/05.webp
-    kind: image
-    width: 1600
-    height: 1201
-    caption: 매뉴얼 1
-  - src: /media/academic/mouse-on-escape/06.webp
-    kind: image
-    width: 1600
-    height: 1201
-    caption: 매뉴얼 2
-  - src: /media/academic/mouse-on-escape/07.webp
-    kind: image
-    width: 1600
-    height: 1201
-    caption: 매뉴얼 3
-  - src: /media/academic/mouse-on-escape/08.webp
-    kind: image
-    width: 1600
-    height: 1201
-    caption: 매뉴얼 4
 ---
+
+import Gallery from '../../components/Gallery.astro';
+
+<Gallery items={[
+  { src: "/media/academic/mouse-on-escape/01.webp", kind: "image", width: 800, height: 600, caption: "게임화면 1" },
+  { src: "/media/academic/mouse-on-escape/02.webp", kind: "image", width: 800, height: 600, caption: "게임화면 2" },
+  { src: "/media/academic/mouse-on-escape/03.webp", kind: "image", width: 800, height: 600, caption: "게임화면 3" },
+  { src: "/media/academic/mouse-on-escape/04.webp", kind: "image", width: 1028, height: 770, caption: "타이틀" },
+  { src: "/media/academic/mouse-on-escape/05.webp", kind: "image", width: 1600, height: 1201, caption: "매뉴얼 1" },
+  { src: "/media/academic/mouse-on-escape/06.webp", kind: "image", width: 1600, height: 1201, caption: "매뉴얼 2" },
+  { src: "/media/academic/mouse-on-escape/07.webp", kind: "image", width: 1600, height: 1201, caption: "매뉴얼 3" },
+  { src: "/media/academic/mouse-on-escape/08.webp", kind: "image", width: 1600, height: 1201, caption: "매뉴얼 4" },
+]} />
 
 계명대학교 디지펜 복수학위과정에서 4명이 한 학기 동안 만들었습니다. David Ly 교수의 조언 아래에서 제작했습니다.
 

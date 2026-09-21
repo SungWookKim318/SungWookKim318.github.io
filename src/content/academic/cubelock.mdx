@@ -8,37 +8,18 @@ engine: "Unity 3D"
 teamSize: "3인"
 summary: "3D 모바일 퍼즐 게임. 팀리더와 그래픽 프로그래머, 테크니컬 아티스트를 맡았습니다."
 order: 10
-media:
-  - src: /media/academic/cubelock/01.webp
-    kind: image
-    width: 118
-    height: 132
-  - src: /media/academic/cubelock/02.webp
-    kind: image
-    width: 230
-    height: 153
-  - src: /media/academic/cubelock/03.webp
-    kind: image
-    width: 266
-    height: 228
-  - src: /media/academic/cubelock/04.mp4
-    kind: loop
-    width: 1280
-    height: 796
-    poster: /media/academic/cubelock/04-poster.jpg
-    caption: 게임 플레이(결과)
-  - src: /media/academic/cubelock/05.mp4
-    kind: loop
-    width: 1280
-    height: 796
-    poster: /media/academic/cubelock/05-poster.jpg
-    caption: 큐브 회전
-  - src: /media/academic/cubelock/06.webp
-    kind: image
-    width: 1427
-    height: 893
-    caption: 게임 플레이(피버)
 ---
+
+import Gallery from '../../components/Gallery.astro';
+
+<Gallery items={[
+  { src: "/media/academic/cubelock/01.webp", kind: "image", width: 118, height: 132 },
+  { src: "/media/academic/cubelock/02.webp", kind: "image", width: 230, height: 153 },
+  { src: "/media/academic/cubelock/03.webp", kind: "image", width: 266, height: 228 },
+  { src: "/media/academic/cubelock/04.mp4", kind: "loop", width: 1280, height: 796, poster: "/media/academic/cubelock/04-poster.jpg", caption: "게임 플레이(결과)" },
+  { src: "/media/academic/cubelock/05.mp4", kind: "loop", width: 1280, height: 796, poster: "/media/academic/cubelock/05-poster.jpg", caption: "큐브 회전" },
+  { src: "/media/academic/cubelock/06.webp", kind: "image", width: 1427, height: 893, caption: "게임 플레이(피버)" },
+]} />
 
 계명대학교 산학인재원의 지원을 받아 캡스톤 프로젝트(2) 수업에서 진행했습니다. 게임에 필요한 이미지와 사운드는 산학인재원의 지원으로 Unity 에셋 스토어에서 구매했습니다.
 

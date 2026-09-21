@@ -1,6 +1,5 @@
 ---
 import Base from './Base.astro';
-import Gallery from '../components/Gallery.astro';
 import type { CollectionEntry } from 'astro:content';
 
 interface Props {
@@ -73,8 +72,6 @@ const facts = [
     </header>
 
     <div class="prose-body mt-12"><slot /></div>
-
-    <Gallery items={d.media} />
   </main>
 </Base>
 

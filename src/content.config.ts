@@ -1,18 +1,6 @@
 import { defineCollection, z } from 'astro:content';
 import { glob } from 'astro/loaders';
 
-// 미디어 한 점. src는 public/ 기준 절대 경로.
-// kind: image = 정지 이미지, loop = 원래 GIF였던 것(자동 재생 무한 반복),
-//       video = 일반 영상(포스터 두고 클릭 재생)
-const media = z.object({
-  src: z.string(),
-  kind: z.enum(['image', 'loop', 'video']).default('image'),
-  caption: z.string().optional(),
-  poster: z.string().optional(),
-  width: z.number(),
-  height: z.number(),
-});
-
 const link = z.object({
   label: z.string(),
   url: z.string().url(),
@@ -32,14 +20,13 @@ const base = z.object({
   teamSize: z.string().optional(),
   stack: z.array(z.string()).default([]),
   highlights: z.array(z.string()).default([]),  // 랜딩 카드에 보여줄 하위 프로젝트명
-  media: z.array(media).default([]),
   links: z.array(link).default([]),
   draft: z.boolean().default(false),
 });
 
 const collection = (dir: string) =>
   defineCollection({
-    loader: glob({ pattern: '**/*.md', base: `./src/content/${dir}` }),
+    loader: glob({ pattern: '**/*.mdx', base: `./src/content/${dir}` }),
     schema: base,
   });
 

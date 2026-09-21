@@ -12,44 +12,27 @@ highlights:
 links:
   - label: mel-chi.co.kr
     url: https://mel-chi.co.kr/
-media:
-  - src: /media/career/melchi-tool/01.webp
-    kind: image
-    width: 1018
-    height: 573
-  - src: /media/career/melchi-tool/02.webp
-    kind: image
-    width: 458
-    height: 815
-  - src: /media/career/melchi-tool/03.webp
-    kind: image
-    width: 458
-    height: 815
-  - src: /media/career/melchi-tool/04.webp
-    kind: image
-    width: 458
-    height: 815
-  - src: /media/career/melchi-tool/05.webp
-    kind: image
-    width: 458
-    height: 815
-  - src: /media/career/melchi-tool/06.webp
-    kind: image
-    width: 458
-    height: 815
-  - src: /media/career/melchi-tool/07.webp
-    kind: image
-    width: 458
-    height: 815
 ---
 
-템플릿 기반 실시간 영상 제작 서비스 멸치의 Windows 저작 도구와 모바일 애플리케이션에 쓰이는 엔진을 개발했습니다.
+import Gallery from '../../components/Gallery.astro';
+
+템플릿 기반 실시간 영상 제작 서비스 멸치의 Windows 저작 도구와 모바일 애플리케이션에 쓰이는 엔진을 개발했습니다. 아래는 멸치 서비스 소개 이미지입니다.
+
+<Gallery items={[
+  { src: "/media/career/richbeam/01.webp", kind: "image", width: 1018, height: 573, caption: "멸치 서비스 소개" },
+  { src: "/media/career/richbeam/02.webp", kind: "image", width: 458, height: 815, caption: "템플릿 목록" },
+  { src: "/media/career/richbeam/03.webp", kind: "image", width: 458, height: 815, caption: "드래그 앤 드롭 편집" },
+  { src: "/media/career/richbeam/04.webp", kind: "image", width: 458, height: 815, caption: "스티커 · 필터 효과" },
+  { src: "/media/career/richbeam/05.webp", kind: "image", width: 458, height: 815, caption: "배경음악 · 효과음" },
+  { src: "/media/career/richbeam/06.webp", kind: "image", width: 458, height: 815, caption: "사진 · 동영상으로 영상 제작" },
+  { src: "/media/career/richbeam/07.webp", kind: "image", width: 458, height: 815, caption: "테마별 영상 제작" },
+]} />
 
 ## 멸치 에셋 편집/등록 툴 — OpenGL/C++ 3D 엔진
 
 *2019.07 ~ 2020.07*
 
-사내에서 멸치 에셋을 등록하고 수정하는 Windows 저작 도구의 3D 엔진을 개발했습니다. 이 툴의 화면은 페이지 맨 아래 갤러리에 있습니다.
+사내에서 멸치 에셋을 등록하고 수정하는 Windows 저작 도구의 3D 엔진을 개발했습니다.
 
 - scene graph 기반 엔진의 노드별 3D 렌더링 로직, 카메라 시스템, transform 개발
 - GLSL shader로 shading과 texture 적용 구현
