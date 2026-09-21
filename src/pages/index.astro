@@ -30,13 +30,6 @@ const timeline = [
   { period: '2009.03 – 2012.02', org: '매천고등학교', role: '인문계열 - 이과' },
 ];
 
-// 프로젝트 카드의 stack 칩과 겹치지 않는 것만 남긴다.
-// 그래픽스 API 이력의 폭은 카드가 흩어져 있어 여기서만 한눈에 보인다.
-const skills = [
-  { label: '그래픽스', items: 'OpenGL / GLSL, OpenGL ES, Skia / SkSL, Metal, Metal Performance Shaders, Core Image, WebGPU(wgpu), WebGL2' },
-  { label: '언어', items: 'C++, Rust, Swift, Objective-C/C++, Kotlin, TypeScript' },
-  { label: '플랫폼', items: 'Windows/WPF, Android NDK, iOS, Kotlin Multiplatform, Web/WASM, HarmonyOS' },
-];
 ---
 
 <Base title="김성욱 | Graphics / Rendering Engine Software Engineer">
@@ -50,6 +43,10 @@ const skills = [
         <p>
           C++와 OpenGL 기반 3D 엔진 개발로 경력을 시작해, Metal 그래픽스 엔진과 Rust/WebGPU 기반
           Web 렌더러까지 7년 동안 렌더링 엔진과 크로스플랫폼 런타임을 개발해 왔습니다.
+        </p>
+        <p>
+          Windows 저작 도구부터 iOS, Android, Web, HarmonyOS까지 다섯 플랫폼에서
+          엔진과 런타임을 다뤘습니다.
         </p>
         <p>
           현재 ProtoPie에서 Kotlin Multiplatform 코어 엔진과 Rust/wgpu 렌더러를 잇는
@@ -67,17 +64,6 @@ const skills = [
               <span class="font-medium">{t.org}</span>
               <span class="block text-sm text-[var(--color-muted)]">{t.role}</span>
             </span>
-          </li>
-        ))}
-      </ul>
-    </Section>
-
-    <Section id="skills" title="Skills">
-      <ul class="divide-y divide-[var(--color-line)] border-t border-[var(--color-line)]">
-        {skills.map((s) => (
-          <li class="grid gap-1 py-5 sm:grid-cols-[110px_1fr] sm:gap-6">
-            <span class="text-sm font-medium">{s.label}</span>
-            <span class="max-w-[68ch] text-[var(--color-muted)]">{s.items}</span>
           </li>
         ))}
       </ul>
