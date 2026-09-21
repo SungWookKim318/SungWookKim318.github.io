@@ -1,27 +1,21 @@
 @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.css');
 @import "tailwindcss";
 
+/* 라이트 전용. 다크 모드는 지원하지 않는다.
+   출력을 전제로 하고, 실린 이미지가 대부분 어두워서 밝은 배경에서 더 잘 보인다.
+   참고: Tailwind v4의 @theme은 최상위에서만 동작한다. @media 안에 넣으면
+   조건 없이 적용되어 버리므로 테마 분기를 여기에 넣지 말 것. */
 @theme {
   --font-sans: 'Pretendard Variable', Pretendard, -apple-system, system-ui, sans-serif;
   --color-ink: #16171a;
-  --color-muted: #6b7280;
-  --color-accent: #2f6df6;
+  --color-muted: #5b6270;
+  --color-accent: #1d4ed8;
   --color-surface: #ffffff;
-  --color-line: #e7e8ea;
+  --color-line: #e3e5e8;
 }
 
 :root {
-  color-scheme: light dark;
-}
-
-@media (prefers-color-scheme: dark) {
-  @theme {
-    --color-ink: #e9eaec;
-    --color-muted: #9aa0a8;
-    --color-accent: #7aa2ff;
-    --color-surface: #101114;
-    --color-line: #26282d;
-  }
+  color-scheme: light;
 }
 
 html {
@@ -34,4 +28,50 @@ body {
   color: var(--color-ink);
   word-break: keep-all;
   overflow-wrap: anywhere;
+}
+
+/* ── 인쇄 ─────────────────────────────────────────────────────
+   브라우저가 배경을 빼고 찍는 경우가 많아 색을 명시한다.
+   캐러셀은 조작이 불가능하므로 모든 장면을 펼쳐서 보여준다. */
+@media print {
+  :root {
+    --color-ink: #000;
+    --color-muted: #444;
+    --color-accent: #000;
+    --color-surface: #fff;
+    --color-line: #bbb;
+  }
+
+  body {
+    background: #fff;
+  }
+
+  main {
+    max-width: none !important;
+    padding: 0 !important;
+  }
+
+  /* 상세 페이지의 "← Career" 같은 화면용 내비게이션 */
+  [data-print-hide] {
+    display: none !important;
+  }
+
+  /* 외부 링크는 주소를 같이 찍는다. 종이에서는 클릭할 수 없다 */
+  main a[href^="http"]::after {
+    content: ' (' attr(href) ')';
+    font-size: 0.8em;
+    color: #555;
+    word-break: break-all;
+  }
+
+  h1,
+  h2,
+  h3 {
+    break-after: avoid;
+  }
+  li,
+  figure,
+  section {
+    break-inside: avoid;
+  }
 }

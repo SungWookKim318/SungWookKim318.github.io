@@ -20,14 +20,20 @@ const many = items.length > 1;
   <div class="gal not-prose" data-gallery tabindex="0" role="group" aria-roledescription="갤러리">
     <div class="stage">
       {items.map((m, i) => (
-        <div class="slide" data-slide data-caption={m.caption ?? ''} hidden={i !== 0}>
+        <div
+          class:list={['slide', { off: i !== 0 }]}
+          data-slide
+          data-caption={m.caption ?? ''}
+          aria-hidden={i !== 0}
+        >
           {m.kind === 'image' || !m.kind ? (
             <img
               src={m.src}
               alt={m.caption ?? ''}
               width={m.width}
               height={m.height}
-              loading={i === 0 ? 'eager' : 'lazy'}
+              {/* lazy로 두면 인쇄할 때 안 불러온 장면이 빈칸으로 나온다.
+                  썸네일이 같은 URL을 쓰므로 어차피 받는 바이트다 */}
               decoding="async"
             />
           ) : m.kind === 'loop' ? (
@@ -118,7 +124,7 @@ const many = items.length > 1;
     align-items: center;
     justify-content: center;
   }
-  .slide[hidden] {
+  .slide.off {
     display: none;
   }
   .slide :global(img),
@@ -232,6 +238,35 @@ const many = items.length > 1;
     color: #fff;
     text-shadow: 0 0 3px rgb(0 0 0 / 0.8);
   }
+
+  /* 인쇄: 넘길 수 없으므로 모든 장면을 펼친다.
+     전역 CSS에 두면 이 파일의 스코프 스타일에 밀리므로 여기에 둔다 */
+  @media print {
+    .nav,
+    .thumbs,
+    .cap:empty {
+      display: none !important;
+    }
+    .stage {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 8pt;
+      height: auto;
+      border: 0;
+      background: none;
+      overflow: visible;
+    }
+    .slide,
+    .slide.off {
+      display: flex;
+      position: static;
+      break-inside: avoid;
+    }
+    .slide :global(img),
+    .slide :global(video) {
+      max-height: 8cm;
+    }
+  }
 </style>
 
 <script>
@@ -246,7 +281,8 @@ const many = items.length > 1;
       cur = (next + slides.length) % slides.length;
       slides.forEach((s, i) => {
         const on = i === cur;
-        s.hidden = !on;
+        s.classList.toggle('off', !on);
+        s.setAttribute('aria-hidden', String(!on));
         const v = s.querySelector('video');
         if (!v) return;
         // 보이지 않는 영상은 멈춘다. loop(원래 GIF)만 자동 재생을 이어간다
