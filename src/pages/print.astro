@@ -1,0 +1,196 @@
+---
+// 제출용 인쇄 페이지. 사이트 전체(37쪽)를 5쪽 안으로 압축한다.
+// 상세 페이지의 본문 전체가 아니라 frontmatter의 summary와 highlights만 쓴다.
+// 내용을 바꾸려면 각 .mdx의 frontmatter를 고친다. 여기에 문장을 적지 않는다.
+import fs from 'node:fs';
+import path from 'node:path';
+import { getCollection } from 'astro:content';
+import Base from '../layouts/Base.astro';
+
+const byOrder = (a: { data: { order: number } }, b: { data: { order: number } }) =>
+  a.data.order - b.data.order;
+const published = ({ data }: { data: { draft: boolean } }) => !data.draft;
+
+const career = (await getCollection('career', published)).sort(byOrder);
+const personal = (await getCollection('personal', published)).sort(byOrder);
+const academic = (await getCollection('academic', published)).sort(byOrder);
+
+// public/media/<group>/<slug>/ 의 첫 썸네일. 없으면 null.
+const thumbs = (group: string, slug: string, n = 1) => {
+  const dir = path.join('public', 'media', group, slug);
+  if (!fs.existsSync(dir)) return [];
+  return fs
+    .readdirSync(dir)
+    .filter((f) => f.endsWith('-thumb.webp'))
+    .sort()
+    .slice(0, n)
+    .map((f) => `/media/${group}/${slug}/${f}`);
+};
+
+const timeline = [
+  { period: '2024.09 –', org: '스튜디오씨드코리아 (ProtoPie)', role: 'Engine & Player 팀 소프트웨어 엔지니어' },
+  { period: '2024.02 – 2024.08', org: '레트리카 (Retrica)', role: 'iOS 그래픽스/렌더러 엔지니어' },
+  { period: '2023.02 – 2024.01', org: '피트니스 캔디 (Fitness Candy)', role: 'iOS 엔지니어' },
+  { period: '2019.07 – 2022.07', org: '리치빔 (멸치)', role: 'IT사업부 렌더링 개발자 (매니저)' },
+  { period: '2012.03 – 2019.08', org: '계명대학교', role: '컴퓨터공학부 게임모바일공학 학사' },
+];
+---
+
+<Base title="김성욱 포트폴리오" noindex>
+  <main>
+    <header class="head">
+      <div>
+        <h1>김성욱 <span class="en">SungWook (Michael) Kim</span></h1>
+        <p class="role">Graphics / Rendering Engine Software Engineer</p>
+      </div>
+      <div class="contact">
+        SungWook.Kim318@gmail.com<br />
+        linkedin.com/in/sungwook-kim-244813152<br />
+        sungwookkim318.github.io
+      </div>
+    </header>
+
+    <p class="intro">
+      C++와 OpenGL 기반 3D 엔진 개발로 경력을 시작해, Metal 그래픽스 엔진과 Rust/wgpu 기반 Web
+      렌더러까지 7년 동안 렌더링 엔진과 크로스플랫폼 런타임을 개발해 왔습니다. Windows 저작 도구부터
+      iOS, Android, Web, HarmonyOS까지 다섯 플랫폼에서 엔진과 런타임을 다뤘습니다.
+    </p>
+
+    <section>
+      <h2>Time Line</h2>
+      <ul class="tl">
+        {timeline.map((t) => (
+          <li><span class="when">{t.period}</span><span><b>{t.org}</b> · {t.role}</span></li>
+        ))}
+      </ul>
+    </section>
+
+    <section>
+      <h2>Award</h2>
+      <p class="sum">
+        대경권 대학생 프로그래밍 경진대회 우수상 <span class="when">경북대학교 총장상 · 2018.05</span>
+      </p>
+    </section>
+
+    <section>
+      <h2>Career</h2>
+      {career.map((e) => (
+        <article class="entry">
+          <div class="bar">
+            <b>{e.data.title}</b>
+            <span class="when">{e.data.period}</span>
+          </div>
+          {e.data.subtitle && <p class="sub">{e.data.subtitle}</p>}
+          <p class="sum">{e.data.summary}</p>
+          {e.data.highlights.length > 0 && (
+            <ul class="hl">{e.data.highlights.map((h) => <li>{h}</li>)}</ul>
+          )}
+          {thumbs('career', e.id, 4).length > 0 && (
+            <div class="strip">
+              {thumbs('career', e.id, 4).map((t) => <img src={t} alt="" />)}
+            </div>
+          )}
+        </article>
+      ))}
+    </section>
+
+    <section>
+      <h2>Personal Projects</h2>
+      <p class="lead">학부 시절 개인적으로 만든 프로젝트입니다. OpenGL로 렌더링 기법을 직접 구현했습니다.</p>
+      <div class="grid">
+        {personal.map((e) => {
+          const ts = thumbs('personal', e.id, 2);
+          return (
+            <div class="card">
+              {ts.length > 0 && <div class="shots">{ts.map((t) => <img src={t} alt="" />)}</div>}
+              <b>{e.data.title}</b> <span class="when">{e.data.period}</span>
+              <p class="sum">{e.data.summary}</p>
+              {e.data.stack.length > 0 && <p class="stack">{e.data.stack.join(' · ')}</p>}
+            </div>
+          );
+        })}
+      </div>
+    </section>
+
+    <section>
+      <h2>Academic Projects</h2>
+      <p class="lead">학부 수업과 캡스톤 과정에서 팀으로 진행한 프로젝트입니다.</p>
+      <div class="grid">
+        {academic.map((e) => {
+          const ts = thumbs('academic', e.id, 2);
+          const meta = [e.data.engine, e.data.role, e.data.teamSize].filter(Boolean).join(' · ');
+          return (
+            <div class="card">
+              {ts.length > 0 && <div class="shots">{ts.map((t) => <img src={t} alt="" />)}</div>}
+              <b>{e.data.title}</b> <span class="when">{e.data.period}</span>
+              <p class="sum">{e.data.summary}</p>
+              {meta && <p class="stack">{meta}</p>}
+            </div>
+          );
+        })}
+      </div>
+    </section>
+
+  </main>
+</Base>
+
+<style is:global>
+  @page { size: A4; margin: 13mm 14mm; }
+
+  html, body { background: #fff; }
+
+  main {
+    max-width: 180mm;
+    margin: 0 auto;
+    padding: 8mm 0;
+    color: #000;
+    font-size: 9.2pt;
+    line-height: 1.45;
+  }
+
+  main h1 { font-size: 17pt; font-weight: 700; margin: 0; }
+  main h1 .en { font-size: 10pt; font-weight: 500; color: #555; }
+  main h2 {
+    font-size: 10.5pt;
+    font-weight: 700;
+    margin: 5mm 0 1.6mm;
+    padding-bottom: 1mm;
+    border-bottom: 1px solid #000;
+    break-after: avoid;
+  }
+  main p { margin: 0; }
+
+  .head { display: flex; justify-content: space-between; align-items: flex-start; gap: 8mm; }
+  .role { font-size: 10pt; color: #333; margin-top: 1mm; }
+  .contact { font-size: 8pt; color: #555; text-align: right; line-height: 1.5; }
+  .intro { margin-top: 3mm; color: #333; }
+
+  .when { color: #666; font-size: 8pt; white-space: nowrap; }
+
+  .tl { list-style: none; margin: 0; padding: 0; }
+  .tl li { display: grid; grid-template-columns: 34mm 1fr; padding: 1mm 0; border-bottom: 1px solid #ddd; }
+
+  .entry { break-inside: avoid; padding: 2mm 0; border-bottom: 1px solid #ddd; }
+  .bar { display: flex; justify-content: space-between; align-items: baseline; gap: 4mm; }
+  .sub { font-size: 8.5pt; color: #555; }
+  .sum { color: #333; }
+  .stack { font-size: 8pt; color: #666; margin-top: 0.6mm; }
+  .lead { font-size: 8.5pt; color: #555; margin-bottom: 2mm; }
+
+  .hl { margin: 1.2mm 0 0; padding-left: 4.5mm; columns: 2; column-gap: 6mm; }
+  .hl li { margin-bottom: 0.4mm; break-inside: avoid; }
+
+  .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4mm 6mm; }
+  .card { break-inside: avoid; }
+  .shots { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5mm; margin-bottom: 1.5mm; }
+  .shots img { width: 100%; height: 26mm; object-fit: cover; border: 1px solid #ccc; }
+  .card > b { display: inline; }
+
+  .strip { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5mm; margin-top: 2mm; }
+  .strip img { width: 100%; height: 24mm; object-fit: cover; border: 1px solid #ccc; }
+
+
+  @media print {
+    main { padding: 0; font-size: 8.8pt; }
+  }
+</style>
